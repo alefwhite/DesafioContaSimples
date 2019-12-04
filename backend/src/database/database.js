@@ -1,5 +1,7 @@
+// Importamos a biblioteca sequelize para trabalharmos com o banco de dados mysql
 const sequelize = require('sequelize');
 
+// string de conexão com o banco de dados criado na plataforma AWS
 const connection = new sequelize('contasimples', 'admin', 'admindev',{
     host : "mysqldev.ckosrb4weggs.sa-east-1.rds.amazonaws.com",
     port : 3306,

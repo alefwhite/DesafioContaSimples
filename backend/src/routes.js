@@ -1,7 +1,14 @@
-const express = require('express');
-const routes = express.Router();
+const express = require('express'); 
+const routes = express.Router();  
 
 const UsersController = require('./controllers/UsersController');
+
+
+// Rotas
+
+routes.post("/autenticar", UsersController.Login);
+
+routes.get("/login", (req, res) => res.redirect("/"));
 
 routes.get("/admin/users", UsersController.Listar);
 
@@ -26,5 +33,7 @@ routes.put('/produtos/:id', function(req, res){
 routes.delete('/produtos/:id', function(req, res){
     return res.json({"Delete" : req.params.id})
 });
+
+/***** Rotas */ 
 
 module.exports = routes;
