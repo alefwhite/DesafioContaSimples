@@ -1,18 +1,23 @@
 const express = require('express'); 
-const routes = express.Router();  
+const routes = express.Router(); 
+const Autenticar = require('./middleware/autenticar'); 
 
 const UsersController = require('./controllers/UsersController');
 
 
 // Rotas
+routes.get("/logout", (req, res) => {
+    res.session.user = undefined;
+    res.redirect("/");
+});
 
 routes.post("/autenticar", UsersController.Login);
 
 routes.get("/login", (req, res) => res.redirect("/"));
 
-routes.get("/admin/users", UsersController.Listar);
+routes.get("/admin/users", Autenticar, UsersController.Listar);
 
-routes.post("/admin/users/criar", UsersController.Criar);
+routes.post("/admin/users/criar", Autenticar, UsersController.Criar);
 
 routes.post('/produtos', function(req, res){
     return res.json(req.body)

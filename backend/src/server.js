@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const port = 3333;
+const allowCors = require('./config/cors');
 
 const session = require('express-session');
 const routes = require('./routes');
@@ -22,6 +23,7 @@ connection.authenticate()
 });
 
 app.use(express.json());
+app.use(allowCors);
 app.use(routes);
 
 app.listen(port, () => {
