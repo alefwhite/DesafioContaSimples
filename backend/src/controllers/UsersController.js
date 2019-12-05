@@ -65,11 +65,11 @@ function Login(req, res) {
                 res.json(req.session.user);
 
              } else {
-                res.redirect('/login');
+                res.json({Ok : false});
              }
 
         } else {
-            res.redirect('/login');
+            res.json({Ok : false});
         }
     })
 }

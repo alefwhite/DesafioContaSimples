@@ -1,41 +1,31 @@
 const express = require('express'); 
 const routes = express.Router(); 
-const Autenticar = require('./middleware/autenticar'); 
+//const Autenticar = require('./middleware/autenticar'); 
 
 const UsersController = require('./controllers/UsersController');
 
 
 // Rotas
-routes.get("/logout", (req, res) => {
-    res.session.user = undefined;
-    res.redirect("/");
+routes.get("/api/logout", (req, res) => {
+    req.session.user = undefined;
+    res.json({"Logout" : true});
 });
 
-routes.post("/autenticar", UsersController.Login);
+routes.post("/api/autenticar", UsersController.Login);
 
-routes.get("/login", (req, res) => res.redirect("/"));
+routes.post("/api/users/criar", UsersController.Criar);
 
-routes.get("/admin/users", Autenticar, UsersController.Listar);
+routes.get("/api/users", UsersController.Listar);
 
-routes.post("/admin/users/criar", Autenticar, UsersController.Criar);
-
-routes.post('/produtos', function(req, res){
-    return res.json(req.body)
-});
-
-routes.get('/', function(req, res){
-    return res.json({"Teste" : "get"})
-});
-
-routes.get('/produtos/:id', function(req, res){
+routes.get('/api/users/:id', function(req, res){
     return res.json({"GetId" : req.params.id})
 });
 
-routes.put('/produtos/:id', function(req, res){
+routes.put('/api/users/:id', function(req, res){
     return res.json({"Put" : req.params.id})
 });
 
-routes.delete('/produtos/:id', function(req, res){
+routes.delete('/api/users/:id', function(req, res){
     return res.json({"Delete" : req.params.id})
 });
 

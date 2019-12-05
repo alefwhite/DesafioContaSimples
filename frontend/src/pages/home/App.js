@@ -1,10 +1,13 @@
 import React from 'react';
-import './App.css';
-
+import Header from '../../assets/components/header/Header';
 function App() {
-  return (
-    <h1>Teste</h1>
-  );
+
+    return (
+        <>
+            <Header/>
+            <h1>Home</h1>
+        </>
+    );
 }
 
 export default App;

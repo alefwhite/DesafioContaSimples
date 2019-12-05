@@ -1,8 +1,8 @@
 module.exports = function (req, res, next) {
-    if(req.session.user != undefined) {
+    if(req.session.user.id != undefined) {
         next();
     } else {
-        res.redirect("/login");
+        res.json({"Logado" : false});
     }
 
 }

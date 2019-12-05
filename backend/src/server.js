@@ -1,7 +1,16 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const port = 3333;
-const allowCors = require('./config/cors');
+//const allowCors = require('./config/cors');
+
+// Habilitamos cors para que o frontend possa consumir nossas apis
+app.use(cors({
+    "origin": "*",
+    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+    "preflightContinue": false,
+    "optionsSuccessStatus": 204
+}));
 
 const session = require('express-session');
 const routes = require('./routes');
@@ -23,7 +32,6 @@ connection.authenticate()
 });
 
 app.use(express.json());
-app.use(allowCors);
 app.use(routes);
 
 app.listen(port, () => {
