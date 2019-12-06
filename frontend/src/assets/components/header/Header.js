@@ -7,15 +7,17 @@ class Header extends Component{
   
     logout = () => {       
 
-        fetch("http://localhost:3333/api/logout")
-            .then(response => response.json())
-            .then((data) => {
-                console.log("Data ", data);
-                 // Remove o token do localStorage
-                localStorage.removeItem("usuario-contasimples");
+        // fetch("http://localhost:3333/api/logout")
+        //     .then(response => response.json())
+        //     .then((data) => {
+        //         console.log("Data ", data);
+        //          // Remove o token do localStorage
+        //         localStorage.removeItem("usuario-contasimples");
 
-            })
-            .catch(error => console.log(error));
+        //     })
+        //     .catch(error => console.log(error));
+
+            localStorage.removeItem("usuario-contasimples");
 
             // Redireciona para o endereço "/"
             this.props.history.push("/");

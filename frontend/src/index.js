@@ -35,7 +35,8 @@ const Rotas = (
                 <Route exact path="/" component={Login}/>
                 <PermissaoAdmin exact path="/home" component={App}/>
                 <PermissaoAdmin exact path="/usuarios" component={Usuarios}/>
-                <Route component={NotFound}/>
+                <PermissaoAdmin component={NotFound}/>
+                {/* <Route component={NotFound}/> */}
             </Switch>
         </>
     </Router>

@@ -6,10 +6,10 @@ const UsersController = require('./controllers/UsersController');
 
 
 /***** Rotas */ 
-routes.get("/api/logout", (req, res) => {
-    req.session.user = undefined;
-    res.json({"Logout" : true});
-});
+// routes.get("/api/logout", (req, res) => {
+//     req.session.user = undefined;
+//     res.json({"Logout" : true});
+// });
 
 routes.get("/api/users", UsersController.Listar);
 
