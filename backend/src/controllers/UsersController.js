@@ -4,6 +4,25 @@ const user = require('../models/user');
 //biblicoteca bcrypt para fazer hash de senha do usuario
 const bcrypt = require('bcryptjs');
 
+function Deletar(req, res) {
+    let id = req.params.id;
+
+    if(id != undefined) {
+        if(!isNaN(id)) {
+            user.destroy({
+                where : {
+                    id : id
+                }
+            })
+            .then(() => {
+                res.json({Ok : true})
+            })
+        }
+    } else {
+        res.error({"message" : "Não foi possível deletar!"})
+    }
+
+}
 
 function Listar(req, res) {
     user.findAll()
@@ -11,6 +30,31 @@ function Listar(req, res) {
         res.json({users : users});
     });
   
+}
+
+function Editar(req, res) {
+    let id = req.params.id;   
+    
+    if(isNaN(id) && isNaN(req.body.id)) {
+        res.error({"message" : "Parâmetro inválido!"})
+    } else {
+        let senha = req.body.senha;
+        let salt = bcrypt.genSaltSync(10);
+        let hash = bcrypt.hashSync(senha, salt);   
+
+        user.update({email : req.body.email, senha : hash },{
+            where : {
+                id : id
+            }
+        })
+        .then(() => {
+            res.json({"message" : "Usuário alterado com sucesso!"})
+        })
+        .catch((error) => {
+            res.error({"message" : "Não foi possível alterar o usuário!"})
+        });
+
+    }
 }
 
 function Criar(req, res) {
@@ -74,4 +118,4 @@ function Login(req, res) {
     })
 }
 
-module.exports = {Listar, Criar, Login};
+module.exports = {Listar, Criar, Login, Deletar, Editar};
