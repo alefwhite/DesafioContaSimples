@@ -16,11 +16,11 @@ const session = require('express-session');
 const routes = require('./routes');
 const connection = require('./database/database');
 
-// Sessions
-app.use(session({
-    secret : "aleatorio",
-    cookie : {maxAge : 30000000}
-}));
+// // Sessions
+// app.use(session({
+//     secret : "aleatorio",
+//     cookie : {maxAge : 30000000}
+// }));
 
 // database
 connection.authenticate()

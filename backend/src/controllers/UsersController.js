@@ -101,12 +101,15 @@ function Login(req, res) {
             let correta = bcrypt.compareSync(senha, user.senha);
 
              if(correta) {
-                req.session.user = {
+                // req.session.user = {
+                //     id : user.id,
+                //     email : user.email
+                // }
+
+                res.json({
                     id : user.id,
                     email : user.email
-                }
-
-                res.json(req.session.user);
+                });
 
              } else {
                 res.json({Ok : false});
