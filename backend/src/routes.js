@@ -10,7 +10,6 @@ const UsersController = require('./controllers/UsersController');
 //     req.session.user = undefined;
 //     res.json({"Logout" : true});
 // });
-
 routes.get("/api/users", UsersController.Listar);
 
 routes.post("/api/autenticar", UsersController.Login);
