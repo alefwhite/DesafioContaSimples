@@ -12,7 +12,7 @@ app.use(cors({
     "optionsSuccessStatus": 204
 }));
 
-const session = require('express-session');
+//const session = require('express-session');
 const routes = require('./routes');
 const connection = require('./database/database');
 
