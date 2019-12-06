@@ -16,7 +16,7 @@ class Header extends Component{
 
         //     })
         //     .catch(error => console.log(error));
-
+            
             localStorage.removeItem("usuario-contasimples");
 
             // Redireciona para o endereço "/"
